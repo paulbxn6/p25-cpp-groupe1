@@ -23,7 +23,10 @@ struct Node
      Node *fg;
      Node *fd;
      Node(int i) : val(i), fg(nullptr), fd(nullptr) {};
-     
+     ~Node() {
+          delete fg;
+          delete fd;
+     }
      void insert(int i)
      {
           if (i < val)
@@ -60,6 +63,7 @@ struct BinaryTree
 {
      Node* racine;
      BinaryTree() : racine(nullptr) {}
+     ~BinaryTree() {delete racine;}
      void insert(int i)
      {
           if (racine == nullptr) {racine = new Node(i);}
