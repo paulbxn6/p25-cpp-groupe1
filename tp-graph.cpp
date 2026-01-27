@@ -42,11 +42,30 @@ struct Graph{
             }
         }
     }
+    void dfs(){
+        std::vector<bool> visited;
+        for (int i=0; i<g.size(); i++){
+            visited.push_back(false);
+        }
+        void search(int s){
+            if (not visited[s]){
+                std::cout << s << " ";
+                visited[s] = true;
+                for (int i=0; i < g[s]->edges.size(); i++){
+                    search(g[s]->edges[i]->end.num);
+                }
+            }
+        }
+        for (int s=0; s<g.size(); s++){
+            search(s);
+        }
+        std::cout << std::endl;
+    }
 };
 
 int main(){
     Graph g1;
     g1.add_edge(2, 5, 17.9);
-    g1.print();
+    g1.dfs();
     return 0;
 }
